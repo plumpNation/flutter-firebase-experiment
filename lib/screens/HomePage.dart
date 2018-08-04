@@ -27,9 +27,7 @@ Widget babyNameStreamList(context) {
     builder: (context, snapshot) {
       if (!snapshot.hasData) return const Text('Loading...');
 
-      return BabyNameList(
-        babyNames: snapshot.data.documents
-      );
+      return BabyNameList(babyNames: snapshot.data.documents);
     }
   );
 }
@@ -37,7 +35,7 @@ Widget babyNameStreamList(context) {
 Widget actionButton(context) {
   return FloatingActionButton(
     tooltip: 'Add name',
-    elevation: 0.0,
+    elevation: 5.0,
     child: Icon(Icons.add),
     onPressed: () {
       Navigator
