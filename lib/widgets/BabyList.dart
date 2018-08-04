@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // If you want to get rid of the firebase class from here
-// consider converting the List<DocumentSnapshot> to a List<BabyName>
+// consider converting the List<DocumentSnapshot> to a List<Baby>
 // https://github.com/flutter/flutter/issues/18459
 
-class BabyNameList extends StatelessWidget {
-  BabyNameList({ Key key, this.babyNames }) : super(key: key);
+class BabyList extends StatelessWidget {
+  BabyList({ Key key, this.Babys }) : super(key: key);
 
-  final List<DocumentSnapshot> babyNames;
+  final List<DocumentSnapshot> Babys;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: babyNames.length,
+      itemCount: Babys.length,
       padding: const EdgeInsets.only(top: 10.0),
       itemExtent: 55.0,
-      itemBuilder: (context, index) => _babyNameListItem(babyNames[index]),
+      itemBuilder: (context, index) => _BabyListItem(Babys[index]),
     );
   }
 
-  Widget _babyNameListItem(DocumentSnapshot document) {
+  Widget _BabyListItem(DocumentSnapshot document) {
     return ListTile(
       key: ValueKey(document.documentID),
       title: Container(
