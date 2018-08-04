@@ -12,7 +12,7 @@ class BabyNameList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ListView.builder(
+    return ListView.builder(
       itemCount: babyNames.length,
       padding: const EdgeInsets.only(top: 10.0),
       itemExtent: 55.0,
@@ -21,20 +21,20 @@ class BabyNameList extends StatelessWidget {
   }
 
   Widget _babyNameListItem(DocumentSnapshot document) {
-    return new ListTile(
-      key: new ValueKey(document.documentID),
-      title: new Container(
-        decoration: new BoxDecoration(
-          border: new Border.all(color: const Color(0x80000000)),
-          borderRadius: new BorderRadius.circular(5.0),
+    return ListTile(
+      key: ValueKey(document.documentID),
+      title: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0x80000000)),
+          borderRadius: BorderRadius.circular(5.0),
         ),
         padding: const EdgeInsets.all(10.0),
-        child: new Row(
+        child: Row(
           children: <Widget>[
-            new Expanded(
-              child: new Text(document['name']),
+            Expanded(
+              child: Text(document['name']),
             ),
-            new Text(
+            Text(
               document['votes'].toString(),
             ),
           ],
