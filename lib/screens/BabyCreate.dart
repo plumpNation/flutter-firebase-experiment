@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:developer';
 
 class BabyCreate extends StatelessWidget {
   BabyCreate({Key key}) : super(key: key);
@@ -25,6 +26,8 @@ class BabyForm extends StatefulWidget {
 class BabyFormState extends State<BabyForm> {
   Baby baby = new Baby();
 
+  String babyName;
+
   // Create a global key that will uniquely identify the Form widget and allow
   // us to validate the form
   //
@@ -46,6 +49,8 @@ class BabyFormState extends State<BabyForm> {
       }
     }
 
+    debugPrint('building BabyFormState');
+
     // Build a Form widget using the _formKey we created above
     return Form(
       key: _formKey,
@@ -58,7 +63,14 @@ class BabyFormState extends State<BabyForm> {
                 return 'Please enter some text';
               }
             },
-            onSaved: (String value) { baby.name = value; },
+            onFieldSubmitted: (val) {
+              debugPrint('onFieldSubmitted');
+            },
+            onSaved: (String value) {
+              debugPrint('onSaved');
+
+              babyName = value;
+            },
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
