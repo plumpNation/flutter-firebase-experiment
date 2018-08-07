@@ -35,3 +35,14 @@ Place this file in your ios folder.
 open -a Simulator
 flutter run
 ```
+
+## VSCode debugging
+
+You need to install the VSCode extensions for flutter.
+
+Set a breakpoint somewhere in your code.
+
+Then `CMD + SHIFT + P` and type `debug`. Look for `Attach to to a Dart process`
+and paste `http://127.0.0.1:8100/` into the dialog.
+
+Your debugging session should start.

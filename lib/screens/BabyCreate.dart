@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:developer';
 
 class BabyCreate extends StatelessWidget {
   BabyCreate({Key key}) : super(key: key);
@@ -29,7 +28,7 @@ class BabyFormState extends State<BabyForm> {
   String babyName;
 
   // Create a global key that will uniquely identify the Form widget and allow
-  // us to validate the form
+  // us to validate the form.
   //
   // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<BabyFormState>!
   final _formKey = GlobalKey<FormState>();
@@ -44,8 +43,8 @@ class BabyFormState extends State<BabyForm> {
         showInSnackBar(context, 'Please fix the errors in red before submitting.');
 
       } else {
-        // form.save();
-        showInSnackBar(context, 'Saving baby name ${baby.name}');
+        form.save(); // this runs the `onSaved` callback on the TextFormField
+        showInSnackBar(context, 'Saving baby name ' + babyName);
       }
     }
 
@@ -62,9 +61,6 @@ class BabyFormState extends State<BabyForm> {
               if (value.isEmpty) {
                 return 'Please enter some text';
               }
-            },
-            onFieldSubmitted: (val) {
-              debugPrint('onFieldSubmitted');
             },
             onSaved: (String value) {
               debugPrint('onSaved');

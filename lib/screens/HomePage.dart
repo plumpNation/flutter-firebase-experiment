@@ -14,20 +14,20 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: BabyStreamList(context),
+      body: babyStreamList(context),
       floatingActionButton: actionButton(context)
     );
   }
 }
 
 /// Wraps the BabyList to separate the data from the widget.
-Widget BabyStreamList(context) {
+Widget babyStreamList(context) {
   return StreamBuilder(
     stream: Firestore.instance.collection('baby-names').snapshots(),
     builder: (context, snapshot) {
       if (!snapshot.hasData) return const Text('Loading...');
 
-      return BabyList(Babys: snapshot.data.documents);
+      return BabyList(babies: snapshot.data.documents);
     }
   );
 }

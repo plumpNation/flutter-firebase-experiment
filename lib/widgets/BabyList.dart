@@ -6,21 +6,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // https://github.com/flutter/flutter/issues/18459
 
 class BabyList extends StatelessWidget {
-  BabyList({ Key key, this.Babys }) : super(key: key);
+  BabyList({ Key key, this.babies }) : super(key: key);
 
-  final List<DocumentSnapshot> Babys;
+  final List<DocumentSnapshot> babies;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: Babys.length,
+      itemCount: babies.length,
       padding: const EdgeInsets.only(top: 10.0),
       itemExtent: 55.0,
-      itemBuilder: (context, index) => _BabyListItem(Babys[index]),
+      itemBuilder: (context, index) => babyListItem(babies[index]),
     );
   }
+}
 
-  Widget _BabyListItem(DocumentSnapshot document) {
+Widget babyListItem(DocumentSnapshot document) {
     return ListTile(
       key: ValueKey(document.documentID),
       title: Container(
@@ -47,4 +48,3 @@ class BabyList extends StatelessWidget {
       }),
     );
   }
-}
