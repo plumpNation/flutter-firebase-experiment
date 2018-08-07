@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BabyCreate extends StatelessWidget {
-  BabyCreate({Key key}) : super(key: key);
+  BabyCreate({ Key key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,10 @@ class BabyForm extends StatefulWidget {
 }
 
 class BabyFormState extends State<BabyForm> {
-  Baby baby = new Baby();
+  Baby baby = Baby();
 
-  String babyName;
+  final Firestore firestore = Firestore.instance;
+  CollectionReference get babyFirestore => firestore.collection('baby-names');
 
   // Create a global key that will uniquely identify the Form widget and allow
   // us to validate the form.
@@ -44,11 +45,15 @@ class BabyFormState extends State<BabyForm> {
 
       } else {
         form.save(); // this runs the `onSaved` callback on the TextFormField
-        showInSnackBar(context, 'Saving baby name ' + babyName);
+        showInSnackBar(context, 'Saving baby name ' + baby.name);
+
+        Map <String, dynamic> babyData = baby.toJson();
+
+        babyFirestore
+          .document(baby.name)
+          .setData(babyData);
       }
     }
-
-    debugPrint('building BabyFormState');
 
     // Build a Form widget using the _formKey we created above
     return Form(
@@ -63,9 +68,7 @@ class BabyFormState extends State<BabyForm> {
               }
             },
             onSaved: (String value) {
-              debugPrint('onSaved');
-
-              babyName = value;
+              baby.name = value;
             },
           ),
           Padding(
@@ -83,11 +86,27 @@ class BabyFormState extends State<BabyForm> {
 
 /// The baby model
 class Baby {
+  Baby();
+
   String name = '';
+  int votes = 0;
+
+  /// Serialise json to a Baby object
+  Baby.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        votes = json['votes'];
+
+  /// Create json from the Baby object.
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'votes': votes,
+    };
+  }
 }
 
 void showInSnackBar(BuildContext context, String value) {
-  Scaffold.of(context).showSnackBar(new SnackBar(
-    content: new Text(value)
+  Scaffold.of(context).showSnackBar(SnackBar(
+    content: Text(value)
   ));
 }
