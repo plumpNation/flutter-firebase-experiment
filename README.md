@@ -7,7 +7,29 @@ A new Flutter project.
 For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
 
-### Spin up a simulator and run the code
+## Firebase
+
+Create a firebase project that has the database called `baby-names` with
+documents in the following structure.
+
+```yml
+document key: Jeffrey
+collection:
+    name: Jeffrey
+    votes: 0
+
+document key: Terry
+collection:
+    name: Terry
+    votes: 0
+```
+
+Go to the project settings and 'download the latest config file'; it should
+be called `GoogleService-Info.plist`.
+
+Place this file in your ios folder.
+
+### Spin up an iOS simulator and run the code
 
 ```shell
 open -a Simulator
