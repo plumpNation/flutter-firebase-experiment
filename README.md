@@ -6,3 +6,10 @@ A new Flutter project.
 
 For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
+
+### Spin up a simulator and run the code
+
+```shell
+open -a Simulator
+flutter run
+```
