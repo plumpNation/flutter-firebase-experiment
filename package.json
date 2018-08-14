@@ -1,0 +1,11 @@
+{
+  "name": "flutter_firebase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:plumpNation/flutter-firebase-experiment.git",
+  "author": "Gavin King <gavin.king@acando.no>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "flutter run"
+  }
+}
