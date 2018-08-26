@@ -6,6 +6,7 @@
   "author": "Gavin King <gavin.king@acando.no>",
   "license": "MIT",
   "scripts": {
-    "dev": "flutter run"
+    "dev": "flutter run",
+    "ios": "open -a Simulator"
   }
 }
